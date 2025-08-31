@@ -1,183 +1,65 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tone-Colored Chinese — Demo</title>
+  <meta charset="UTF-8">
+  <title>Tone-Colored Chinese</title>
   <style>
-    :root {
-      --tone1: yellow;  /* 1st tone */
-      --tone2: green;   /* 2nd tone */
-      --tone3: brown;   /* 3rd tone */
-      --tone4: red;     /* 4th tone */
-    }
-    * { box-sizing: border-box; }
+    /* Page background + font */
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", Arial, sans-serif;
-      margin: 0;
-      padding: 2rem 1rem 4rem;
-      line-height: 1.8;
-      background: #fafafa;
-      color: #111;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      padding: 1.25rem 1.25rem 2rem;
-    }
-    h1 {
-      font-size: 1.6rem;
-      margin: 0 0 0.25rem 0;
-    }
-    .sub {
-      margin-top: 0;
-      color: #555;
-      font-size: 0.95rem;
-    }
-    .legend {
+      background: #fff8e7; /* soft cream background */
+      font-family: Arial, sans-serif;
       display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      padding: 0.75rem 0.75rem 0.25rem;
-      border: 1px solid #eee;
-      border-radius: 0.75rem;
-      background: #fffef8;
-      margin: 1rem 0 1.25rem;
-    }
-    .chip {
-      display: inline-flex;
+      justify-content: center;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #eee;
-      background: #fff;
-      font-size: 0.9rem;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      height: 100vh;
+      margin: 0;
     }
-    .swatch {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.08);
+
+    /* Container box */
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      text-align: center;
     }
-    .swatch.t1 { background: var(--tone1); }
-    .swatch.t2 { background: var(--tone2); }
-    .swatch.t3 { background: var(--tone3); }
-    .swatch.t4 { background: var(--tone4); }
-    .swatch.tn { background: #111; }
-    .controls {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    button {
-      font: inherit;
-      padding: 0.45rem 0.8rem;
-      border-radius: 0.7rem;
-      border: 1px solid #e5e5e5;
-      background: #fff;
-      cursor: pointer;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-    button:hover { background: #f7f7f7; }
-    .panel {
-      border: 1px dashed #e5e5e5;
-      padding: 0.75rem;
-      border-radius: 0.75rem;
-      background: #fff;
-    }
-    .ex { font-size: 1.2rem; }
+
     /* Tone colors */
-    .t1 { color: var(--tone1); }
-    .t2 { color: var(--tone2); }
-    .t3 { color: var(--tone3); }
-    .t4 { color: var(--tone4); }
-    .tn { color: inherit; }
-    /* Toggle off colors */
-    .no-colors .t1,
-    .no-colors .t2,
-    .no-colors .t3,
-    .no-colors .t4 {
-      color: inherit !important;
+    :root {
+      --tone1: gold;      /* 1st tone */
+      --tone2: green;     /* 2nd tone */
+      --tone3: brown;     /* 3rd tone */
+      --tone4: red;       /* 4th tone */
     }
-    code {
-      background: #f2f2f2;
-      border-radius: 0.4rem;
-      padding: 0.1rem 0.35rem;
+    .tone1 { color: var(--tone1); }
+    .tone2 { color: var(--tone2); }
+    .tone3 { color: var(--tone3); }
+    .tone4 { color: var(--tone4); }
+
+    /* Title style */
+    h1 {
+      margin-bottom: 20px;
     }
-    .footer {
-      margin-top: 1.25rem;
-      font-size: 0.9rem;
-      color: #666;
+
+    /* Example text */
+    p {
+      font-size: 1.5rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Tone‑Colored Chinese</h1>
-    <p class="sub">A simple demo using your tone colors: 1st = <b style="color:var(--tone1)">yellow</b>, 2nd = <b style="color:var(--tone2)">green</b>, 3rd = <b style="color:var(--tone3)">brown</b>, 4th = <b style="color:var(--tone4)">red</b>, neutral = normal.</p>
-
-    <div class="legend">
-      <span class="chip"><span class="swatch t1"></span> 1st tone</span>
-      <span class="chip"><span class="swatch t2"></span> 2nd tone</span>
-      <span class="chip"><span class="swatch t3"></span> 3rd tone</span>
-      <span class="chip"><span class="swatch t4"></span> 4th tone</span>
-      <span class="chip"><span class="swatch tn"></span> neutral</span>
-    </div>
-
-    <div class="controls">
-      <button id="toggle">Toggle colors on/off</button>
-    </div>
-
-    <div class="panel ex" id="text">
-      <!-- Example 1 -->
-      <p>
-        <span class="t3">我</span><span class="t3">喜</span><span class="t1">欢</span>
-        <span class="t1">妈</span><span class="tn">妈</span>。
-        <small>(wǒ xǐhuān māma.)</small>
-      </p>
-      <!-- Example 2 -->
-      <p>
-        <span class="t3">你</span><span class="t3">好</span><span class="tn">吗</span>？
-        <small>(nǐ hǎo ma?)</small>
-      </p>
-      <!-- Example 3 -->
-      <p>
-        <span class="t1">今</span><span class="t1">天</span><span class="t3">我</span><span class="t1">喝</span><span class="t3">水</span>。
-        <small>(jīntiān wǒ hē shuǐ.)</small>
-      </p>
-    </div>
-
-    <h2>How to mark tones</h2>
-    <p>Wrap each character in a <code>&lt;span&gt;</code> with a tone class:</p>
-<pre><code>&lt;span class="t1"&gt;妈&lt;/span&gt;  ← 1st
-&lt;span class="t2"&gt;民&lt;/span&gt;  ← 2nd
-&lt;span class="t3"&gt;我&lt;/span&gt;  ← 3rd
-&lt;span class="t4"&gt;是&lt;/span&gt;  ← 4th
-&lt;span class="tn"&gt;吗&lt;/span&gt;  ← neutral
-</code></pre>
-
-    <h2>Edit this page</h2>
-    <ol>
-      <li>Open this file in any text editor.</li>
-      <li>Find the <code>&lt;div class="panel ex" id="text"&gt;</code> section.</li>
-      <li>Replace the example sentences with your own, keeping the tone classes.</li>
-      <li>Save and upload the file to your website host.</li>
-    </ol>
-
-    <p class="footer">Built for your synesthesia-inspired tone colors. ✨</p>
+    <h1>Chinese Tones with Colors</h1>
+    <p>
+      <span class="tone1">mā</span>
+      <span class="tone2">má</span>
+      <span class="tone3">mǎ</span>
+      <span class="tone4">mà</span>
+    </p>
   </div>
-
-  <script>
-    const btn = document.getElementById('toggle');
-    btn.addEventListener('click', () => {
-      document.body.classList.toggle('no-colors');
-    });
-  </script>
 </body>
 </html>
+
+ 
+ 
+    
